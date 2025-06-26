@@ -109,10 +109,12 @@ function setChildren(container: TreeNode[], children: any[], path: string[]) {
 
 function refreshTree() {
   // @ts-ignore
-  if (props.show && window.ccdevShow) {
+  const scene = cc.director.getScene();
+  // @ts-ignore
+  if (props.show && window.ccdevShow && scene) {
     let value: TreeNode[] = [];
     //@ts-ignore
-    setChildren(value, cc.director.getScene().children, []);
+    setChildren(value, scene.children, []);
     (treeView.value as any).setData(value);
     updateKey.value = -updateKey.value;
   }
